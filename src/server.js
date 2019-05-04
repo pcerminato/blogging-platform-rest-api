@@ -3,6 +3,7 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 import config from './config'
+import postRouter from './resources/post/post.router'
 
 export const app = express()
 
@@ -13,9 +14,7 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-app.get('/', (req, res) => {
-  res.send({ message: 'testing app' })
-})
+app.get('/post', postRouter)
 
 export const start = async () => {
   try {

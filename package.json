@@ -4,6 +4,9 @@
   "description": "A RESTful API for a blog entries",
   "main": "index.js",
   "scripts": {
+    "test": "jest --forceExit --detectOpenHandles --silent",
+    "test-routes": "npm run test -t router",
+    "test-models": "npm run test -t model",
     "build": "babel src --out-dir dist",
     "dev": "nodemon --exec npm run restart",
     "restart": "rimraf dist && npm run build && npm run start",
