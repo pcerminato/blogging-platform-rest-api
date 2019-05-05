@@ -17,6 +17,8 @@ var _config = _interopRequireDefault(require("./config"));
 
 var _post = _interopRequireDefault(require("./resources/post/post.router"));
 
+var _db = require("./utils/db");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = (0, _express.default)();
@@ -28,10 +30,11 @@ app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
 app.use((0, _morgan.default)('dev'));
-app.get('/post', _post.default);
+app.use('/post', _post.default);
 
 const start = async () => {
   try {
+    await (0, _db.connect)();
     app.listen(_config.default.port, () => {
       console.log(`Blogging RESTful API running on http://localhost:${_config.default.port}`);
     });

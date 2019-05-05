@@ -8,4 +8,8 @@ const basicConfig = {
 
 let envConfig = {}
 
+if (env === 'development') {
+  envConfig = require('./dev')
+}
+
 module.exports = merge(basicConfig, envConfig)

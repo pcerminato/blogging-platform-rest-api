@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import config from './config'
 import postRouter from './resources/post/post.router'
+import { connect } from './utils/db'
 
 export const app = express()
 
@@ -14,10 +15,11 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-app.get('/post', postRouter)
+app.use('/post', postRouter)
 
 export const start = async () => {
   try {
+    await connect()
     app.listen(config.port, () => {
       console.log(
         `Blogging RESTful API running on http://localhost:${config.port}`

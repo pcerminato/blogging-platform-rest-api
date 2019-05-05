@@ -8,4 +8,9 @@ const basicConfig = {
   env
 };
 let envConfig = {};
+
+if (env === 'development') {
+  envConfig = require('./dev');
+}
+
 module.exports = (0, _lodash.merge)(basicConfig, envConfig);

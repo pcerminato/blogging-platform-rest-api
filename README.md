@@ -1,2 +1,3 @@
-# blogging-platform-rest-api
+# blogging-platform-rest-api :rocket:
+
 A RESTful API for a blog entries
