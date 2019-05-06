@@ -8,6 +8,7 @@
     "test:routes": "npm run test -t router",
     "test:models": "npm run test -t model",
     "test:controllers": "yarn test -t controller",
+    "test:auth": "yarn test -t Authentication:",
     "build": "babel src --out-dir dist",
     "dev": "nodemon --exec npm run restart",
     "restart": "rimraf dist && npm run build && npm run start",
