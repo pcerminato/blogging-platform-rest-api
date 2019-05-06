@@ -4,7 +4,9 @@ import morgan from 'morgan'
 import cors from 'cors'
 import config from './config'
 import postRouter from './resources/post/post.router'
+import userRouter from './resources/user/user.router'
 import { connect } from './utils/db'
+import { signup, signin, protect } from './utils/auth'
 
 export const app = express()
 
@@ -15,7 +17,12 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-app.use('/post', postRouter)
+app.post('/signup', signup)
+app.post('/signin', signin)
+
+app.use('/api', protect)
+app.use('/api/user', userRouter)
+app.use('/api/post', postRouter)
 
 export const start = async () => {
   try {

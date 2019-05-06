@@ -36,7 +36,23 @@ export const create = async (req, res) => {
   }
 }
 
-export const remove = async (req, res) => {}
+export const remove = async (req, res) => {
+  try {
+    const post = await Post.findOneAndRemove({
+      createdBy: req.user._id,
+      _id: req.params.id
+    })
+
+    if (!post) {
+      return res.status(400).end()
+    }
+
+    return res.status(200).json({ data: post })
+  } catch (e) {
+    console.error(e)
+    res.status(400).end()
+  }
+}
 
 export const postController = {
   getDrafts,
