@@ -15,7 +15,8 @@ describe('Post controller', () => {
       'create',
       'getPublicAndPrivate',
       'getDrafts',
-      'remove'
+      'remove',
+      'search'
     ]
 
     crudMethodsNames.forEach(name => {
@@ -182,10 +183,11 @@ describe('Post controller', () => {
       const res = {
         status(status) {
           expect(status).toBe(200)
+          return this
         },
         json(result) {
-          expect(result.data.createdBy).toBe(authUser)
-          expect(result.data._id).toBe(post._id)
+          expect(result.data.createdBy).toEqual(authUser)
+          expect(result.data._id).toEqual(post._id)
         }
       }
       await remove(req, res)

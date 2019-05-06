@@ -54,9 +54,28 @@ export const remove = async (req, res) => {
   }
 }
 
+export const search = async (req, res) => {
+  try {
+    const words = req.query.words || ''
+    const docs = await Post.find({
+      state: 'public',
+      $text: {
+        $search: words,
+        $caseSensitive: false,
+        $diacriticSensitive: false
+      }
+    }).exec()
+    res.status(200).json({ data: docs })
+  } catch (error) {
+    console.error(error)
+    res.status(400).end()
+  }
+}
+
 export const postController = {
   getDrafts,
   getPublicAndPrivate,
   create,
-  remove
+  remove,
+  search
 }

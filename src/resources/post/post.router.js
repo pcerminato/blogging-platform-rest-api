@@ -3,7 +3,8 @@ import {
   getDrafts,
   getPublicAndPrivate,
   remove,
-  create
+  create,
+  search
 } from './post.controller'
 
 const postRouter = Router()
@@ -14,6 +15,7 @@ postRouter
   .post(create)
 
 postRouter.get('/drafts', getDrafts)
+postRouter.get('/search', search)
 
 postRouter.route('/:id').delete(remove)
 

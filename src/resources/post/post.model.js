@@ -29,7 +29,19 @@ const postSchema = new Mongoose.Schema({
   }
 })
 
-postSchema.index({ title: 1 })
-postSchema.index({ user: 1, state: 1 })
+postSchema.index({ createdBy: 1, state: 1 })
+
+postSchema.index(
+  {
+    title: 'text',
+    body: 'text'
+  },
+  {
+    weights: {
+      title: 2,
+      body: 1
+    }
+  }
+)
 
 export const Post = Mongoose.model('post', postSchema)
