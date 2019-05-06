@@ -5,9 +5,9 @@ describe('Post Router', () => {
     const routes = [
       { path: '/', method: 'get' },
       { path: '/', method: 'post' },
-      { path: '/:id', method: 'get' },
       { path: '/:id', method: 'delete' },
-      { path: '/:id', method: 'put' }
+      { path: '/drafts', method: 'get' },
+      { path: '/search', method: 'get' }
     ]
 
     routes.forEach(route => {

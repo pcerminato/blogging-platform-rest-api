@@ -36,7 +36,6 @@ describe('Post Schema', () => {
     const date = Post.schema.obj.createdOn
     expect(date).toEqual({
       type: Date,
-      required: true,
       default: Date.now
     })
   })
@@ -45,7 +44,6 @@ describe('Post Schema', () => {
     const state = Post.schema.obj.state
     expect(state).toEqual({
       type: String,
-      required: true,
       enum: ['draft', 'private', 'public'],
       default: 'draft'
     })

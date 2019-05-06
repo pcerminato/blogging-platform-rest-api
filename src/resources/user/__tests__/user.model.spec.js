@@ -1,15 +1,19 @@
 import { User } from '../user.model'
-import Mongoose from 'mongoose'
 
 describe('User Schema', () => {
-  test('id', () => {
-    const id = User.schema.obj.id
-    expect(id).toEqual(Mongoose.SchemaTypes.ObjectId)
+  test('email', () => {
+    const email = User.schema.obj.email
+    expect(email).toEqual({
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
+    })
   })
 
-  test('name', () => {
-    const name = User.schema.obj.name
-    expect(name).toEqual({
+  test('password', () => {
+    const password = User.schema.obj.password
+    expect(password).toEqual({
       type: String,
       required: true
     })
