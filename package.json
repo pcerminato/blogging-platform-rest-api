@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --silent",
-    "test-routes": "npm run test -t router",
-    "test-models": "npm run test -t model",
-    "test-controllers": "yarn test -t controller",
+    "test:routes": "npm run test -t router",
+    "test:models": "npm run test -t model",
+    "test:controllers": "yarn test -t controller",
     "build": "babel src --out-dir dist",
     "dev": "nodemon --exec npm run restart",
     "restart": "rimraf dist && npm run build && npm run start",
@@ -51,9 +51,7 @@
     "nodemon": "^1.18.3",
     "prettier": "^1.15.2",
     "rimraf": "^2.6.2",
-    "supertest": "^3.3.0",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
+    "supertest": "^3.3.0"
   },
   "repository": {
     "type": "git",
@@ -61,8 +59,14 @@
   },
   "author": "pcerminato",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pcerminato/blogging-platform-rest-api/issues"
-  },
-  "homepage": "https://github.com/pcerminato/blogging-platform-rest-api#readme"
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "<rootDir>/test-db-setup.js",
+    "testPathIgnorePatterns": [
+      "dist/"
+    ],
+    "restoreMocks": true
+  }
 }

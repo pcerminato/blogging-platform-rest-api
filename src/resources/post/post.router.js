@@ -1,20 +1,20 @@
 import { Router } from 'express'
+import {
+  getDrafts,
+  getPublicAndPrivate,
+  remove,
+  create
+} from './post.controller'
 
 const postRouter = Router()
 
-const fakeController = (req, res) => {
-  res.send({ message: 'this is a fake post' })
-}
-
 postRouter
   .route('/')
-  .get(fakeController)
-  .post(fakeController)
+  .get(getPublicAndPrivate)
+  .post(create)
 
-postRouter
-  .route('/:id')
-  .delete(fakeController)
-  .put(fakeController)
-  .get(fakeController)
+postRouter.get('/drafts', getDrafts)
+
+postRouter.route('/:id').delete(remove)
 
 export default postRouter

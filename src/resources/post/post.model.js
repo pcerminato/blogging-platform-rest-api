@@ -15,12 +15,10 @@ const postSchema = new Mongoose.Schema({
   },
   createdOn: {
     type: Date,
-    required: true,
     default: Date.now
   },
   state: {
     type: String,
-    required: true,
     enum: ['draft', 'private', 'public'],
     default: 'draft'
   },
@@ -32,5 +30,6 @@ const postSchema = new Mongoose.Schema({
 })
 
 postSchema.index({ title: 1 })
+postSchema.index({ user: 1, state: 1 })
 
 export const Post = Mongoose.model('post', postSchema)

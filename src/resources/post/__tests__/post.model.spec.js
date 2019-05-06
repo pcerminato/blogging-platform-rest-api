@@ -1,5 +1,6 @@
 import { Post } from '../post.model'
 import mongoose from 'mongoose'
+import { isFunction } from 'lodash'
 
 describe('Post Schema', () => {
   test('title', () => {
@@ -48,5 +49,9 @@ describe('Post Schema', () => {
       enum: ['draft', 'private', 'public'],
       default: 'draft'
     })
+  })
+
+  test('has create function', () => {
+    expect(isFunction(Post.create)).toBe(true)
   })
 })
